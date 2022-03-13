@@ -1,0 +1,108 @@
+package JavaAppPack;
+
+import java.util.Scanner;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.VBox;
+import javafx.stage.Stage;
+import java.util.LocalDate;
+import java.util.LocalTime;
+
+
+public class Tasks {
+	public class Tasks extends Application {
+
+		@Override
+		public void start(Stage taskStage) {
+			VBox vBoxOne = new VBox();
+			Scene sceneOne = new Scene(vbox1);
+			vBoxOne.setSpacing(10);
+			 final Label label = new Label("Task List");
+			 label.setFont(new Font("Arial", 18));
+			 label.setPadding(new insets(10, 10, 10, 10));
+			 
+			 tableChron.setEditable(true);
+			 
+			 TableColumn nameCol = new TableColumn("Task");
+			 TableColumn dayCol = new TableColumn("Date");
+			 TableColumn timeCol = new TableColumn("Time");
+			 TableColumn deadlineCol = new TableColumn("Deadline");
+			 TableColumn descriptionCol = new TableColumn("Description");
+			 
+			 nameCol.setCellValueFactory(new PropertyValueFactory<Task, String>("Task")); nameCol.setCellFactory(TextFieldTableCell.forTableColumn()); nameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Task,String> t) { ((Tasks) t.getTableView().getItems().get(t.getTablePosition().getRow())).getToDo(t.getNewValue());}});
+
+			 dayCol.setCellValueFactory(new PropertyValueFactory<Task, String>("Day")); dayCol.setCellFactory(TextFieldTableCell.forTableColumn()); dayCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Task,String> t) { ((Tasks) t.getTableView().getItems().get(t.getTablePosition().getRow())).getToDo(t.getNewValue());}});
+			 
+			 timeCol.setCellValueFactory(new PropertyValueFactory<Task, String>("Time")); timeCol.setCellFactory(TextFieldTableCell.forTableColumn()); timeCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Task,String> t) { ((Tasks) t.getTableView().getItems().get(t.getTablePosition().getRow())).getToDo(t.getNewValue());}});
+			 
+			 deadlineCol.setCellValueFactory(new PropertyValueFactory<Task, String>("Deadline")); deadlineCol.setCellFactory(TextFieldTableCell.forTableColumn()); deadlineCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Task,String> t) { ((Tasks) t.getTableView().getItems().get(t.getTablePosition().getRow())).getToDo(t.getNewValue());}});
+			 
+			 descriptionCol.setCellValueFactory(new PropertyValueFactory<Task, String>("Description")); descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn()); descriptionCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Task,String> t) { ((Tasks) t.getTableView().getItems().get(t.getTablePosition().getRow())).getToDo(t.getNewValue());}});
+			 
+			
+		}
+		
+		tableChron.setItems(data);
+		tableChron.getColumns().addAll(nameCol, dayCol, timeCol, deadlineCol, descriptionCol);
+		
+		tableChron.setColumnResizePOlicy(TableView.Constrained_Resize_Policy);
+		nameCol.setMinWidth(100);
+		dayCol.setMinWidth(50);
+		timeCol.setMinWidth(50);
+		deadlineCol.setMindWidth(50);
+		descriptionCol.setMinWidth(200);
+		
+		HBox hboxOne = new HBox();
+		hboxOne.setSpacing(10);
+		hboxOne.setPadding(new Insets(10, 10, 10, 10));
+		
+		TextField addTask = new TextField();
+		TextField addDay = new TextField();
+		TextField addTime = new TextField();
+		TextField addDeadline = new TextField();
+		TextField addDecription = new TextField();
+		
+		addTask.setText("Enter Task:");
+		addDay.setText("Enter Todays Date:");
+		addTime.setText("Enter the Time:");
+		addDeadline.setText("Enter the Deadline:");
+		addDescription.setText("Enter a description:");
+		
+		addTask.setPrefWidth(150);
+		addDay.setPrefWidth(75);
+		addTime.setPrefWidth(65);
+		addDeadline.setPrefWidth(65);
+		addDescription.setPrefWidth(150);
+		
+		Button btnAdd = new Button("Add");
+		btnAdd.setOnAction(new EventHandler<ActionEvent>) {
+			@Override
+			public void handle(ActionEvent e) {
+				data.add(new Task(addTask.getText(), addDay.getText(), addTime.getText(), addDeadline.getText(), addDescription.getTask()));
+				addTask.clear();
+				addDay.clear();
+				addTime.clear();
+				addDeadline.clear();
+				addDescription.clear();
+			}
+		}
+		
+		hboxOne.getTask().addAll(addTask, addDay, addTime, addDeadline, addDescription, btnAdd);
+		vBoxOne.getTask().addAll(label, tableChron, hboxOne);
+		
+		taskStage.setWidth(750);
+		taskStage.setHeight(500);
+		taskStage.setTitle("Task Tracker");
+		taskStage.setScene (scene1);
+		taskStage.show();
+		 
+	}
+
+	
+
+	}
+
+}

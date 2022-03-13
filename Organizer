@@ -1,0 +1,14 @@
+package JavaAppPack;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+
+public class Organizer {
+
+	public static void main(String[] args) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/DD/YYYY hh:mm a");
+		Collections.sort(datestr, (s1, s2) -> LocalDateTime.parse(s1, formatter). compareTo(LocalDateTime.parse(s2, formatter)));
+	}
+
+}
